@@ -1,0 +1,252 @@
+/* DHCP Admin Portal - Layout Styles */
+/* Full Bleed Layout - utilize entire viewport */
+/* Holy Grail Layout - header, main content area, footer structure */
+/* CSS Logical Properties for internationalization */
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* App container - Full Bleed Layout */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
+  min-inline-size: 100vw;
+}
+
+/* Header */
+.app-header {
+  background-color: #2c3e50;
+  color: white;
+  padding-block: 1rem;
+  padding-inline: 2rem;
+  border-block-end: 1px solid #34495e;
+  flex-shrink: 0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-inline-size: 1200px;
+  margin-inline: auto;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.header-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.header-nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.header-nav a:hover,
+.header-nav a:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
+
+.header-nav a.active {
+  background-color: #3498db;
+}
+
+/* Main content area - Holy Grail Layout */
+.app-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar - Master/Detail Workflow */
+.app-sidebar {
+  inline-size: 280px;
+  background-color: #f8f9fa;
+  border-inline-end: 1px solid #dee2e6;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.sidebar-nav {
+  padding-block: 1rem;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+}
+
+.sidebar-nav li {
+  margin-block-end: 0.5rem;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: #495057;
+  text-decoration: none;
+  border-radius: 0;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a:focus {
+  background-color: #e9ecef;
+  color: #212529;
+  outline: 2px solid #007bff;
+  outline-offset: -2px;
+}
+
+.sidebar-nav a.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.sidebar-nav a.active:focus {
+  outline-color: white;
+}
+
+/* Main content area */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+/* Footer */
+.app-footer {
+  background-color: #6c757d;
+  color: white;
+  padding-block: 1rem;
+  padding-inline: 2rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Responsive Design - Mobile First */
+@media (max-width: 768px) {
+  .app-main {
+    flex-direction: column;
+  }
+  
+  .app-sidebar {
+    inline-size: 100%;
+    block-size: auto;
+    order: 2;
+  }
+  
+  .main-content {
+    order: 1;
+    padding: 1rem;
+  }
+  
+  .sidebar-nav {
+    padding-block: 0.5rem;
+  }
+  
+  .sidebar-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-inline: 1rem;
+  }
+  
+  .sidebar-nav li {
+    margin-block-end: 0;
+  }
+  
+  .sidebar-nav a {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    padding-inline: 1rem;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .header-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .main-content {
+    padding: 0.5rem;
+  }
+}
+
+/* Skip to main content link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #007bff;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Focus management for keyboard navigation */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .app-header {
+    border-block-end: 2px solid;
+  }
+  
+  .app-sidebar {
+    border-inline-end: 2px solid;
+  }
+  
+  .sidebar-nav a:hover,
+  .sidebar-nav a:focus {
+    outline: 3px solid;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
