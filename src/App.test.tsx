@@ -2,8 +2,14 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders DHCP Admin Portal', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const titleElement = screen.getByText(/DHCP Admin Portal/i);
+  expect(titleElement).toBeInTheDocument();
+});
+
+test('renders navigation menu', () => {
+  render(<App />);
+  const dashboardLink = screen.getByText(/Dashboard/i);
+  expect(dashboardLink).toBeInTheDocument();
 });
