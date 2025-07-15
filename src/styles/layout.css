@@ -1,0 +1,146 @@
+/* Holy Grail Layout with Full Bleed Design */
+/* Using CSS Logical Properties for internationalization */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-block-size: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  display: grid;
+  grid-template-areas: 
+    "header header"
+    "sidebar main"
+    "footer footer";
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 280px 1fr;
+  min-block-size: 100vh;
+  background-color: #f5f5f5;
+}
+
+.app-header {
+  grid-area: header;
+  background-color: #1e293b;
+  color: white;
+  padding-block: 1rem;
+  padding-inline: 2rem;
+  border-block-end: 1px solid #334155;
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 100;
+}
+
+.app-sidebar {
+  grid-area: sidebar;
+  background-color: #f8fafc;
+  border-inline-end: 1px solid #e2e8f0;
+  overflow-y: auto;
+  position: sticky;
+  inset-block-start: 0;
+  max-block-size: 100vh;
+}
+
+.app-main {
+  grid-area: main;
+  padding: 2rem;
+  background-color: white;
+  overflow-y: auto;
+  min-block-size: calc(100vh - 120px);
+}
+
+.app-footer {
+  grid-area: footer;
+  background-color: #f1f5f9;
+  padding-block: 1rem;
+  padding-inline: 2rem;
+  border-block-start: 1px solid #e2e8f0;
+  color: #64748b;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+/* Responsive Design - Mobile First */
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-areas: 
+      "header"
+      "main"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+  
+  .app-sidebar {
+    display: none;
+  }
+  
+  .app-sidebar.mobile-open {
+    display: block;
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 280px;
+    block-size: 100vh;
+    z-index: 200;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .app-main {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    padding-inline: 1rem;
+  }
+  
+  .app-main {
+    padding: 0.5rem;
+  }
+  
+  .app-sidebar.mobile-open {
+    inline-size: 100%;
+  }
+}
+
+/* Focus management for accessibility */
+.skip-link {
+  position: absolute;
+  inset-block-start: -40px;
+  inset-inline-start: 6px;
+  background: #000;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  inset-block-start: 6px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .app-header {
+    border-block-end: 2px solid #fff;
+  }
+  
+  .app-sidebar {
+    border-inline-end: 2px solid #000;
+  }
+  
+  .app-footer {
+    border-block-start: 2px solid #000;
+  }
+}
